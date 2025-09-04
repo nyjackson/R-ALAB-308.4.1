@@ -12,7 +12,7 @@ let objArr = []
 
 for (j = 0 ; j < csvArr.length-1 ; j++ ) {
     let arrObj = {}
-    for ( k = 0 ; k < csvArr[j].length ; k++) {
+    for ( k = 0 ; k < csvArr[j].length; k++) {
         let newKey = csvArr[0][k].toLowerCase();
         arrObj[newKey] = csvArr[j+1][k]
     }
@@ -33,12 +33,34 @@ console.log(`${ages/objArr.length} is the average age of the group.`);
 
 // Full Circle, Back To A String
 
-let resultString = "";
-for(let i = 0; i < objArr.length;i++){
-    let objEntry = objArr[i]
-    for(key in objEntry){
-        resultString+=key
-        resultString+=","
+let resultCSV = "";
+/****
+ *  for(key in objArr[i]){
+    if(i > 0){
+       resultCSV+=" "
+       resultCSV+=objArr[i][key]
     }
+    else{
+        resultCSV+=`${key} `
+    }
+   }
+   resultCSV+="\\n";
+   index = 1
+ * 
+ */
+
+let keys = Object.keys(objArr[0])
+for(let i = 0; i < objArr.length;i++){
+let values = Object.values(objArr[i])
+  if(i == 0){
+    resultCSV+=keys
+    resultCSV+="\\n"
+  }
+  else{
+    resultCSV+="\\n"
+    resultCSV += values
+  }
 }
-console.log(resultString)
+
+console.log(resultCSV)
+//console.log(objArr)
